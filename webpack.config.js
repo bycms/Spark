@@ -26,6 +26,10 @@ module.exports = async (env, options) => {
     },
     resolve: {
       extensions: [".html", ".js"],
+      fallback: {
+        "vm": require.resolve("vm-browserify"),
+        "stream": require.resolve("stream-browserify")
+      }
     },
     module: {
       rules: [

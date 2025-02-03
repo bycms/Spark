@@ -27,9 +27,12 @@
   },
   "dependencies": {
     "browserify": "^17.0.1",
+    "buffer": "^6.0.3",
     "core-js": "^3.36.0",
     "markdown-it": "^14.1.0",
-    "regenerator-runtime": "^0.14.1"
+    "regenerator-runtime": "^0.14.1",
+    "stream-browserify": "^3.0.0",
+    "vm-browserify": "^1.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
