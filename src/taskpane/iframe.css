@@ -1,0 +1,54 @@
+#drvFrames {
+    position: absolute;
+    bottom: 60px;
+    width: 100vw;
+    align-items: right;
+}
+
+#drvSel {
+    display: none;
+    width: 86vw;
+    max-width: 360px;
+    height: 400px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    margin: 5px;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+}
+
+#drvSearch {
+    display: none;
+    box-shadow: 3px 3px 5px #666;
+    width: 86vw;
+    max-width: 360px;
+    height: 300px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    margin: 5px;
+    padding: 5px;
+    overflow: hidden;
+    background-color: white;
+    animation: popup 0.3s ease;
+}
+
+@keyframes popup {
+    from {
+        opacity: 0;
+        bottom: -20px;
+    }
+    to {
+        opacity: 1;
+        bottom: 0;
+    }
+}
+
+.referBtn {
+    padding-left: 5px;
+    height: 30px;
+    width: 60px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(18, 69, 105);
+}

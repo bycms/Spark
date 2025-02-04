@@ -1,10 +1,15 @@
 /* General Styles */
 body {
     font-family: 'Roboto', Arial, sans-serif;
-    background-color: #f4f4f4; /* Changed to a solid background color */
+    background-color: #e9e9e9; /* Changed to a solid background color */
     color: #333;
     margin: 0;
     padding: 0;
+}
+
+header {
+    height: 40px;
+    background-color: white;
 }
 
 .container {
@@ -12,7 +17,7 @@ body {
     max-width: 1800px; /* Limit the maximum width */
     height: 87vh;
     margin-top: 10px; /* Center the container */
-    background: #f9f9f9;
+    background: #e9e9e9;
     border-radius: 8px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -37,18 +42,20 @@ body {
     padding: 20px;
     overflow-y: auto;
     padding-bottom: 70px;
-    background: #f9f9f9;
+    background: #e9e9e9;
 }
 
 .sysmsg {
     padding: 10px;
     color: #333;
     animation: fadeIn 0.5s ease;
+    max-width: 60%;
 }
 
 #chatcontents {
     display: flex;
     flex-direction: column;
+    background-color: #e9e9e9;
 }
 
 .usermsg {
@@ -290,6 +297,6 @@ pre code {
 /* .footer {
     padding: 10px;
     text-align: center;
-    background: #f4f4f4;
+    background: #e9e9e9;
     border-top: 1px solid #ddd;
 } */

@@ -1,7 +1,8 @@
-// Initialize the PublicClientApplication instance with msalConfig.
 const msalInstance = new msal.PublicClientApplication(msalConfig);
 
-// Function to handle sign-in using a popup.
+window.accToken;
+window.isSignedIn = false;
+
 function signIn() {
   const loginRequest = {
     scopes: graphRequest.scopes,
@@ -10,6 +11,8 @@ function signIn() {
   msalInstance.loginPopup(loginRequest)
     .then(loginResponse => {
       console.log("Login successful:", loginResponse);
+      window.accToken = loginResponse.accessToken;
+      window.isSignedIn = true;
       // Additional logic after sign-in can be added here.
     })
     .catch(error => {

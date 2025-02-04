@@ -2,7 +2,7 @@ const msalConfig = {
     auth: {
       clientId: "968f6a33-df27-4499-b2c8-186db65fec06", // e.g., "12345678-abcd-efgh-ijkl-1234567890ab"
       authority: "https://login.microsoftonline.com/common", // Change if using a tenant-specific authority
-      redirectUri: "http://localhost" // e.g., "http://localhost:3000"
+      redirectUri: "http://localhost:3000" // e.g., "http://localhost:3000"
     },
     cache: {
       cacheLocation: "localStorage", // "sessionStorage" is also available
@@ -10,9 +10,17 @@ const msalConfig = {
     }
   };
   
-  // Define the scopes for accessing the Graph API.
-  const graphRequest = {
-    // Include Files.Read for OneDrive file access.
-    scopes: ["User.Read", "Files.Read"]
-  };
-  
+// Define the scopes for accessing the Graph API.
+const graphRequest = {
+  // Include Files.Read for OneDrive file access.
+  scopes: ["User.Read", "Files.Read"]
+};
+
+msalInstance.handleRedirectPromise().then((response) => {
+  if (response) {
+      console.log("Access Token:", response.accessToken);
+
+  }
+}).catch(error => {
+  console.error(error);
+});
