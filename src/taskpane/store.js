@@ -134,7 +134,7 @@ async function call(prompt, hist, mode) {
     doInsert = false;
     resCtrls.style.display = "none";
     return new Promise((resolve, reject) => {
-        const { host, path, APISecret, APIKey, APPID } = DPSK_AI;
+        const { host, path, APISecret, APIKey, APPID, domain } = DPSK_AI;
         const dateString = new Date().toGMTString();
         const tmp = `host: ${host}\ndate: ${dateString}\nGET ${path} HTTP/1.1`;
         const signature = crypto.createHmac('sha256', APISecret).update(tmp).digest('base64');
@@ -164,7 +164,7 @@ async function call(prompt, hist, mode) {
                 header: { app_id: APPID },
                 parameter: {
                     chat: {
-                        domain: '4.0Ultra',
+                        domain: domain,
                         temperature: 0.6,
                         max_tokens: 8192,
                     },
