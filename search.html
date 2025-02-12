@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            position: relative;
+            top: 30vh;
+            text-align: center;
+        }
+        
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        #border {
+            position: absolute;
+            top: 0;
+            left: 7vw;
+            right: 5vw;
+            bottom: 0;
+        }
+        
+        input[type="text"] {
+            position: relative;
+            width: 50%;
+            top: 30vh;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: 0.3s ease;
+        }
+        
+        button {
+            position: relative;
+            top: 30vh;
+            padding: 10px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.5s ease;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #loading {
+            position: absolute;
+            top: 40vh;
+            opacity: 0;
+            text-align: center;
+            transition: 0.5s ease;
+        }
+        
+        #results {
+            margin-top: 20px;
+            border-radius: 8px;
+            max-width: 50vw;
+            opacity: 0;
+            transition: 0.3s ease;
+        }
+        
+        .result-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        
+        .result-item h3 {
+            margin: 0;
+        }
+        
+        .result-item a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        
+        .result-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="border">
+        <h1 id="title">Search</h1>
+        <form id="searchForm">
+            <input type="text" id="query" name="query" placeholder="Enter search query" required>
+            <button type="submit" id="submitBtn">Search</button>
+        </form>
+        <div id="results"><h1 id="loading">Loading results...</h1></div>
+    </div>
+</body>
+<script>
+    document.getElementById('searchForm').addEventListener('submit', function(event) {
+        document.getElementById("submitBtn").style.top = '0';
+        document.getElementById("query").style.top = '0';
+        document.getElementById("title").style.opacity = '0';
+        document.getElementById("loading").style.opacity = '1';
+        document.getElementById("results").style.opacity = '0';
+        document.getElementById("results").innerHTML = '';
+        event.preventDefault();
+        const query = document.getElementById('query').value;
+        search(query);
+    });
+
+    function search(query) {
+        const url = "https://api.langsearch.com/v1/web-search";
+        const payload = JSON.stringify({
+            query: query,
+            freshness: "oneMonth",
+            summary: false,
+            count: 10
+        });
+        const headers = {
+            'Authorization': 'Bearer sk-d9fd26536a6b48828dc7bbe15e31642c',
+            'Content-Type': 'application/json'
+        };
+
+        fetch(url, {
+            method: 'POST',
+            headers: headers,
+            body: payload
+        })
+        .then(response => response.json())
+        .then(data => {
+            displayResults(data.data.webPages.value);
+            document.getElementById("loading").style.opacity = '0';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+
+    function displayResults(results) {
+        const resultsContainer = document.getElementById('results');
+        resultsContainer.innerHTML = '';
+        results.forEach(item => {
+            const resultItem = document.createElement('div');
+            resultItem.classList.add('result-item');
+            resultItem.innerHTML = `
+                <h3>${item.name}</h3>
+                <a href="${item.url}" target="_blank">${item.url}</a>
+                <p>${item.snippet}</p>
+                <br/>
+            `;
+            resultsContainer.appendChild(resultItem);
+            resultsContainer.style.opacity = '1';
+        });
+    }
+</script>
+</html>

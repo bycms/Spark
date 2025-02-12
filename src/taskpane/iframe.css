@@ -19,7 +19,6 @@
 }
 
 #drvSearch {
-    display: none;
     box-shadow: 3px 3px 5px #666;
     width: 86vw;
     max-width: 360px;
@@ -45,10 +44,11 @@
 }
 
 .referBtn {
-    padding-left: 5px;
+    position: relative;
+    left: 5px;
     height: 30px;
     width: 60px;
     border: none;
     border-radius: 5px;
-    background-color: rgb(18, 69, 105);
+    background-color: rgb(8, 163, 224);
 }

@@ -18,15 +18,16 @@ async function searchFiles(query) {
 }
 
 async function getFileContent(fileid) {
+
   try {
-    const response = await fetch(``, {
+    const response = await fetch(`https://graph.microsoft.com/v1.0/me/drive/items/${fileid}/content`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${window.accToken}`
       }
     });
-    const data = await response.json();
-    console.log(data);
+    const fileContent = await response.text();
+    console.log("File content:", fileContent);
   } catch (error) {
     console.error(error);
   }
@@ -75,8 +76,8 @@ document.getElementById("user-input").addEventListener('input', function() {
     }, 1500);
 });
 
-Array.from(document.getElementsByClassName("referBtn")).forEach(btn => {
-  btn.addEventListener("click", function() {
-    getFileContent(this.id);
-  });
-})
+document.addEventListener('click', function(ev) {
+  if (ev.target.classList.contains('referBtn')) {
+    getFileContent(ev.target.id);
+  }
+});
