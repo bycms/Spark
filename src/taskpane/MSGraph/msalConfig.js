@@ -2,7 +2,7 @@ const msalConfig = {
     auth: {
       clientId: "968f6a33-df27-4499-b2c8-186db65fec06", // e.g., "12345678-abcd-efgh-ijkl-1234567890ab"
       authority: "https://login.microsoftonline.com/common", // Change if using a tenant-specific authority
-      redirectUri: "http://localhost:3000" // e.g., "http://localhost:3000"
+      redirectUri: "https://bycms.github.io/Spark/src/taskpane/taskpane.html" // e.g., "http://localhost:3000"
     },
     cache: {
       cacheLocation: "localStorage", // "sessionStorage" is also available
